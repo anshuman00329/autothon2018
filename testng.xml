@@ -14,4 +14,40 @@
         </classes>
     </test>
 
+    <test name="FirefoxTest">
+
+        <parameter name="browser" value="firefox" />
+
+        <classes>
+
+            <class name="testcases.LoginTest" />
+
+        </classes>
+
+    </test>
+
+    <test name="ChromeTest">
+
+        <parameter name="browser" value="chrome" />
+
+        <classes>
+
+            <class name="testcases.LoginTest" />
+
+        </classes>
+
+    </test>
+
+    <!--<test name="MobileTest">
+
+     <parameter name="browser" value="mobile" />
+
+     <classes>
+
+      <class name="testcases.LoginTest" />
+
+     </classes>
+
+    </test>-->
+
 </suite>
