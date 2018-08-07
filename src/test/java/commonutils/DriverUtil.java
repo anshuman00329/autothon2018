@@ -19,7 +19,7 @@ public class DriverUtil {
     public WebDriver assignDriver(String browser) throws MalformedURLException {
         if (browser.equalsIgnoreCase("firefox"))
         {
-            System.setProperty("webdriver.gecko.ddriver",System.getProperty("user.dir")+"/geckodriver.exe");
+            System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"/geckodriver.exe");
             driver = new FirefoxDriver();
             driver.manage().window().maximize();
         }
