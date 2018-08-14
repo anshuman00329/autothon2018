@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite parallel="false" verbose="1" name="Autothon" preserve-order="true">
 
         <!--listener class-name="Listeners.MyListener"></listener-->
@@ -7,12 +8,12 @@
         <listener class-name="Listeners.MyListener"></listener>
 
     </listeners>
-    <test name="Autothon">
+    <!--<test name="Autothon">
         <classes>
             <class name="webservice.webServiceTest"/>
             <class name="webservice.webServiceTest2"/>
         </classes>
-    </test>
+    </test>-->
 
     <test name="FirefoxTest">
 
@@ -38,7 +39,7 @@
 
     </test>
 
-    <!--<test name="MobileTest">
+    <test name="MobileTest">
 
      <parameter name="browser" value="mobile" />
 
@@ -48,6 +49,6 @@
 
      </classes>
 
-    </test>-->
+    </test>
 
 </suite>

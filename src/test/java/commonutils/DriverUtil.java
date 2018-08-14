@@ -11,20 +11,21 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverUtil {
-    WebDriver driver;
-    public WebDriver assignDriver(String browser) throws MalformedURLException {
+    static WebDriver driver;
+    public static WebDriver launchBrowser(String browser) throws MalformedURLException {
         if (browser.equalsIgnoreCase("firefox"))
         {
-            System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"/geckodriver.exe");
+            System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+ File.separator+"lib"+File.separator+"geckodriver.exe");
             driver = new FirefoxDriver();
             driver.manage().window().maximize();
         }
         else if (browser.equalsIgnoreCase("chrome")){
-            System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+ File.separator+"lib"+File.separator+"chromedriver.exe");
             driver = new ChromeDriver();
             driver.manage().window().maximize();
         }
@@ -41,7 +42,7 @@ public class DriverUtil {
             capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
 
             // Set the device name as well (you can give any name)
-            capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"iPhone");
+            capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"4d0099a04c833163");
 
             // set the android version as well
             capabilities.setCapability(MobileCapabilityType.VERSION,"6.0.1");
@@ -56,10 +57,10 @@ public class DriverUtil {
             URL url= new URL("http://127.0.0.1:4723/wd/hub");
 
             // Create object of  AndroidDriver class and pass the url and capability that we created
-            WebDriver driver = new AndroidDriver(url, capabilities);
+            driver = new AndroidDriver(url, capabilities);
 
             //Check whether the device is locked or not
-            if (((AndroidDriver<WebElement>) driver).isLocked())
+            if (((AndroidDriver<WebElement>) driver).isDeviceLocked())
                 ((AndroidDriver<WebElement>) driver).unlockDevice();
             else
                 ((AndroidDriver<WebElement>) driver).lockDevice();
