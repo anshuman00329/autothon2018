@@ -29,8 +29,6 @@ public class LoginTest {
     @Test
     public void test() throws InterruptedException {
         driver.get("https://www.gmail.com");
-        wait.explicitWait(driver,"//input[@id='identifierId']").sendKeys("pnijher@manh.com", Keys.ENTER);
-        wait.explicitWait(driver,"//input[@class='whsOnd zHQkBf' and @type='password']").sendKeys("Param",Keys.ENTER);
     }
 
     @AfterTest

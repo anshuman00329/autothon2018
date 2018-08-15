@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite parallel="false" verbose="1" name="Autothon" preserve-order="true">
+<suite parallel="tests" verbose="1" name="Autothon" thread-count="2" preserve-order="true">
 
         <!--listener class-name="Listeners.MyListener"></listener-->
     <listeners>
@@ -15,7 +15,7 @@
         </classes>
     </test>-->
 
-    <test name="FirefoxTest">
+    <!--<test name="FirefoxTest">
 
         <parameter name="browser" value="firefox" />
 
@@ -25,7 +25,7 @@
 
         </classes>
 
-    </test>
+    </test>-->
 
     <test name="ChromeTest">
 
@@ -33,13 +33,13 @@
 
         <classes>
 
-            <class name="testcases.LoginTest" />
+            <class name="testcases.TrivagoBookingTest" />
 
         </classes>
 
     </test>
 
-    <test name="MobileTest">
+    <!--<test name="MobileTest">
 
      <parameter name="browser" value="mobile" />
 
@@ -49,6 +49,16 @@
 
      </classes>
 
-    </test>
+    </test>-->
+
+    <!--<test name="FirefoxTest">
+
+        <classes>
+
+            <class name="testcases.Try" />
+
+        </classes>
+
+    </test>-->
 
 </suite>

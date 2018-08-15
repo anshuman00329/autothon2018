@@ -16,7 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverUtil {
-    static WebDriver driver;
+    public static WebDriver driver;
     public static WebDriver launchBrowser(String browser) throws MalformedURLException {
         if (browser.equalsIgnoreCase("firefox"))
         {

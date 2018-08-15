@@ -2,6 +2,7 @@ package testdata;
 
 public class Constants {
 
-    public static String url = "https://outlook.office365.com/";
+    public static String trivagoUrl = "https://www.trivago.in/";
     public static int maxWait = 1000;
+
 }
