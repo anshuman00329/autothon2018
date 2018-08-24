@@ -8,12 +8,12 @@
         <listener class-name="Listeners.MyListener"></listener>
 
     </listeners>
-    <!--<test name="Autothon">
+    <!--test name="Autothon">
         <classes>
             <class name="webservice.webServiceTest"/>
             <class name="webservice.webServiceTest2"/>
         </classes>
-    </test>-->
+    </test-->
 
     <!--<test name="FirefoxTest">
 
