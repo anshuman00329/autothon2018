@@ -9,8 +9,5 @@
         <module name="autothon2018" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="autothon2018" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
 </project>

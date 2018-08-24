@@ -18,7 +18,7 @@ import java.net.URL;
 public class DriverUtil {
     public static WebDriver driver;
     public static WebDriver launchBrowser(String browser) throws MalformedURLException {
-        if (browser.equalsIgnoreCase("firefox"))
+         if (browser.equalsIgnoreCase("firefox"))
         {
             System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+ File.separator+"lib"+File.separator+"geckodriver.exe");
             driver = new FirefoxDriver();
