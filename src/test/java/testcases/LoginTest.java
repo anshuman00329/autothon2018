@@ -22,7 +22,7 @@ public class LoginTest {
     @Parameters("browser")
     public void preConfig(String browser) throws MalformedURLException
     {
-        driver = DriverUtil.launchBrowser(browser);
+        //driver = DriverUtil.launchBrowser(browser);
 
     }
 

@@ -27,10 +27,21 @@
 
     </test>-->
 
-    <test name="ChromeTest">
-
+    <test name="ChromeTest" parallel = "false" preserve-order="true"  >
+        <parameter name="executionEnv" value="docker" />
         <parameter name="browser" value="chrome" />
 
+        <classes>
+
+            <class name="testcases.TrivagoBookingTest" />
+
+        </classes>
+
+    </test>
+
+    <test name="FirefoxTest" parallel = "false" preserve-order="true" >
+        <parameter name="executionEnv" value="docker"/>
+        <parameter name="browser" value="firefox" />
         <classes>
 
             <class name="testcases.TrivagoBookingTest" />

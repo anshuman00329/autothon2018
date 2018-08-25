@@ -30,8 +30,8 @@ public class TrivagoBookingTest {
     FabHotelPage fabHotelPage;
 
     @BeforeTest
-    @Parameters("browser")
-    public void preConfig(String browser) throws MalformedURLException
+    @Parameters({"executionEnv","browser"})
+    public void preConfig(String executionEnv, String browser) throws MalformedURLException
     {
         String log4jConfigFile = System.getProperty("user.dir")
                 + File.separator + "log4j.properties";
@@ -52,17 +52,17 @@ public class TrivagoBookingTest {
         try {
             launchPage.searchCity("Pune");
             //genericUtil.waitForPageToLoad();
-            searchResultsPage.selectDate("checkin", "2018-08-27");
-            searchResultsPage.selectDate("checkout", "2018-08-31");
-            searchResultsPage.selectRoom("FamilyRoom");
-            searchResultsPage.selectGuestRating("good");
-            searchResultsPage.selectFilter();
-            genericUtil.waitForPageToLoad();
-            searchResultsPage.clickOnViewDeal();
-            //fabHotelPage.selectRoom();
-            genericUtil.switchToChildWindow();
-            fabHotelPage.selectRoom();
-            fabHotelPage.clickOnProceedToPayButton();
+//            searchResultsPage.selectDate("checkin", "2018-08-27");
+//            searchResultsPage.selectDate("checkout", "2018-08-31");
+//            searchResultsPage.selectRoom("FamilyRoom");
+//            searchResultsPage.selectGuestRating("good");
+//            searchResultsPage.selectFilter();
+//            genericUtil.waitForPageToLoad();
+//            searchResultsPage.clickOnViewDeal();
+//            //fabHotelPage.selectRoom();
+//            genericUtil.switchToChildWindow();
+//            fabHotelPage.selectRoom();
+//            fabHotelPage.clickOnProceedToPayButton();
         }
         catch(Exception ex)
         {
