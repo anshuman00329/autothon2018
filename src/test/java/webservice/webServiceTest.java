@@ -23,7 +23,7 @@ public class webServiceTest {
             PropertyConfigurator.configure(log4jConfigFile);
 
 }
-    //@Test(priority = 0)
+    @Test(priority = 0)
     public void webServiceGetTest() throws JSONException {
         webserviceUtil wUtil = new webserviceUtil();
         Response response = wUtil.getResponse();

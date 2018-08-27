@@ -1,6 +1,7 @@
 package webservice;
 import Listeners.MyListener;
 import com.relevantcodes.extentreports.LogStatus;
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -24,7 +25,7 @@ public class webserviceUtil extends MyListener {
      *
      * @return response : returns the response received
      */
-
+     @Step("Get Response Step")
     public Response getResponse()
     {
         //System.out.println("JSON URL is: " + baseURL + basePath);
@@ -44,6 +45,7 @@ public class webserviceUtil extends MyListener {
         return response;
     }
 
+    @Step("Post Response Step")
     public Response postRequest(String jsonPost)
     {
         Response response = given()
