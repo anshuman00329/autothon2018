@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class ExcelUtil {
 
-    String inputFileName="C:\\Autothon-2\\autothon\\resources\\InputData.xlsx";
+    String inputFileName=System.getProperty("user.dir")+"src\\test\\java\\testdata\\InputData.xlsx";
 
     public String getInputData(String sheetName, String inputData){
         Cell value=null;

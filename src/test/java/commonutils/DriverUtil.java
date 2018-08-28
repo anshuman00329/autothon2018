@@ -18,60 +18,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverUtil {
-    public static WebDriver driver;
-    public static DesiredCapabilities capability;
-    public static WebDriver launchBrowser1(String browser) throws MalformedURLException {
-         if (browser.equalsIgnoreCase("firefox"))
-        {
-            System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+ File.separator+"lib"+File.separator+"geckodriver.exe");
-            driver = new FirefoxDriver();
-            driver.manage().window().maximize();
-        }
-        else if (browser.equalsIgnoreCase("chrome")){
-            System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+ File.separator+"lib"+File.separator+"chromedriver.exe");
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
-        }
-        else if (browser.equalsIgnoreCase("mobile")){
-            DesiredCapabilities capabilities=DesiredCapabilities.android();
+    public  RemoteWebDriver driver;
+    public  DesiredCapabilities capabilities;
 
-            // set the capability to execute test in chrome browser
-            capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, BrowserType.CHROME);
-
-            // set the capability to execute our test in Android Platform
-            capabilities.setCapability(MobileCapabilityType.PLATFORM, Platform.ANDROID);
-
-            // we need to define platform name
-            capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
-
-            // Set the device name as well (you can give any name)
-            capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"4d0099a04c833163");
-
-            // set the android version as well
-            capabilities.setCapability(MobileCapabilityType.VERSION,"6.0.1");
-
-            // set the Android app package
-            capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.android.chrome");
-
-            // set the android app activity
-            capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.google.android.apps.chrome.Main");
-
-            // Create object of URL class and specify the appium server address
-            URL url= new URL("http://127.0.0.1:4723/wd/hub");
-
-            // Create object of  AndroidDriver class and pass the url and capability that we created
-            driver = new AndroidDriver(url, capabilities);
-
-            //Check whether the device is locked or not
-            if (((AndroidDriver<WebElement>) driver).isDeviceLocked())
-                ((AndroidDriver<WebElement>) driver).unlockDevice();
-            else
-                ((AndroidDriver<WebElement>) driver).lockDevice();
-        }
-        return driver;
-    }
-
-    public static WebDriver launchBrowser(String executionEnv, String browser) throws MalformedURLException {
+    public RemoteWebDriver launchDriver(String executionEnv, String browser) throws MalformedURLException {
         if(executionEnv.equals("local")) {
             if (browser.equalsIgnoreCase("firefox")) {
                 System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + File.separator + "lib" + File.separator + "geckodriver.exe");
@@ -94,7 +44,7 @@ public class DriverUtil {
                 capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 
                 // Set the device name as well (you can give any name)
-                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "4d0099a04c833163");
+                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "c9799743");
 
                 // set the android version as well
                 capabilities.setCapability(MobileCapabilityType.VERSION, "8.1.0");
@@ -106,7 +56,7 @@ public class DriverUtil {
                 capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.google.android.apps.chrome.Main");
 
                 // Create object of URL class and specify the appium server address
-                URL url = new URL("http://127.0.0.1:4723/wd/hub");
+                URL url = new URL("http://0.0.0.0:4723/wd/hub");
 
                 // Create object of  AndroidDriver class and pass the url and capability that we created
                 driver = new AndroidDriver(url, capabilities);
@@ -120,18 +70,26 @@ public class DriverUtil {
         }
         else if(executionEnv.equals("docker")){
             if (browser.equalsIgnoreCase("firefox")) {
-                capability = new DesiredCapabilities().firefox();
-                driver = new RemoteWebDriver(new URL(Constants.nodeURL), capability);
+                capabilities = new DesiredCapabilities().firefox();
+                driver = new RemoteWebDriver(new URL(Constants.nodeURL), capabilities);
+                driver.manage().window().maximize();
             }
             else if (browser.equalsIgnoreCase("chrome")) {
-                capability = new DesiredCapabilities().chrome();
-                driver = new RemoteWebDriver(new URL(Constants.nodeURL), capability);
+                capabilities = new DesiredCapabilities().chrome();
+                driver = new RemoteWebDriver(new URL(Constants.nodeURL), capabilities);
+                driver.manage().window().maximize();
             }
-            else if (browser.equalsIgnoreCase("mobileEnv")) {}
-            else if (browser.equalsIgnoreCase("emulatorEnv")) {}
         }
         return driver;
     }
 
-
+    public void setCapabilites(String browser) {
+        if(browser.equalsIgnoreCase("firefox")){
+            capabilities = new DesiredCapabilities().firefox();
+            capabilities.setCapability("marionette", true);
+        }
+        else if(browser.equalsIgnoreCase("chrome")){
+            capabilities = new DesiredCapabilities().chrome();
+        }
+    }
 }

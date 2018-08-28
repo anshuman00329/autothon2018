@@ -2,19 +2,14 @@ package testcases;
 
 import commonutils.DriverUtil;
 import commonutils.GenericUtil;
-import org.apache.log4j.BasicConfigurator;
+import commonutils.LoadDriverManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageobjects.FabHotelPage;
-import pageobjects.SearchResultsPage;
-import pageobjects.TrivagoLaunchPage;
 import testdata.Constants;
 
 import java.io.File;
@@ -23,11 +18,9 @@ import java.net.MalformedURLException;
 public class TrivagoBookingTest {
 
     static Logger logger = Logger.getLogger(TrivagoBookingTest.class);
-    WebDriver driver;
-    TrivagoLaunchPage launchPage;
-    SearchResultsPage searchResultsPage;
+    RemoteWebDriver driver;
     GenericUtil genericUtil;
-    FabHotelPage fabHotelPage;
+    DriverUtil driverUtil = new DriverUtil();
 
     @BeforeTest
     @Parameters({"executionEnv","browser"})
@@ -37,20 +30,17 @@ public class TrivagoBookingTest {
                 + File.separator + "log4j.properties";
         PropertyConfigurator.configure(log4jConfigFile);
         logger.info("Preconfig");
-        driver = DriverUtil.launchBrowser(browser);
-        driver.get(Constants.trivagoUrl);
+        driver = driverUtil.launchDriver(executionEnv, browser);
+        LoadDriverManager.setWebdriver(driver);
+        driver.get(Constants.testUrl);
         genericUtil = new GenericUtil();
         genericUtil.waitForPageToLoad();
-        launchPage = PageFactory.initElements(DriverUtil.driver, TrivagoLaunchPage.class);
-        searchResultsPage = PageFactory.initElements(DriverUtil.driver, SearchResultsPage.class);
-        fabHotelPage = PageFactory.initElements(DriverUtil.driver, FabHotelPage.class);
     }
 
     @Test(description = "Trivago Booking Test")
     public void trivagoTest() throws InterruptedException {
         logger.info("Test to book tickets on Trivago");
         try {
-            launchPage.searchCity("Pune");
             //genericUtil.waitForPageToLoad();
 //            searchResultsPage.selectDate("checkin", "2018-08-27");
 //            searchResultsPage.selectDate("checkout", "2018-08-31");
@@ -76,6 +66,6 @@ public class TrivagoBookingTest {
     }
     @AfterTest
     public void close(){
-        DriverUtil.driver.quit();
+        driverUtil.driver.close();
     }
 }

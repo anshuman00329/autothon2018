@@ -17,6 +17,8 @@ import org.testng.ITestResult;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+
+
 public class MyListener implements ITestListener {
     protected static ExtentReports reports;
     protected static ExtentTest test;
@@ -26,6 +28,7 @@ public class MyListener implements ITestListener {
     }
     public void onTestSuccess(ITestResult result) {
         System.out.println("on test success");
+        test.log(LogStatus.INFO,"On test success");
         test.log(LogStatus.PASS, result.getMethod().getMethodName() + "test has passed");
     }
     public void onTestFailure(ITestResult result) {

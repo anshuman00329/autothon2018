@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite parallel="tests" verbose="1" name="Autothon" thread-count="2" preserve-order="true">
+<suite parallel="tests" name="Autothon" thread-count="3" preserve-order="true">
 
         <!--listener class-name="Listeners.MyListener"></listener-->
-    <listeners>
-
+ <!--   <listeners>
         <listener class-name="Listeners.MyListener"></listener>
+    </listeners>-->
 
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
     </listeners>
-    <test name="Autothon">
+
+
+    <!--test name="Autothon">
         <classes>
             <class name="webservice.webServiceTest"/>
             <class name="webservice.webServiceTest2"/>
         </classes>
-    </test>
+    </test-->
 
     <!--<test name="FirefoxTest">
 
@@ -27,7 +32,7 @@
 
     </test>-->
 
-    <!--test name="ChromeTest" parallel = "false" preserve-order="true"  >
+    <!--<test name="ChromeTest" parallel = "false" preserve-order="true"  >
         <parameter name="executionEnv" value="docker" />
         <parameter name="browser" value="chrome" />
 
@@ -48,25 +53,46 @@
 
         </classes>
 
-    </test-->
-
-    <!--<test name="MobileTest">
-
-     <parameter name="browser" value="mobile" />
-
-     <classes>
-
-      <class name="testcases.LoginTest" />
-
-     </classes>
-
     </test>-->
-
-    <!--<test name="FirefoxTest">
+    <!--<test name="ChromeTest1" parallel = "false" preserve-order="true"  >
+        <parameter name="executionEnv" value="docker" />
+        <parameter name="browser" value="chrome" />
 
         <classes>
 
-            <class name="testcases.Try" />
+            <class name="testcases.TrivagoBookingTest" />
+
+        </classes>
+
+    </test>-->
+
+    <!--<test name="MobileTest">
+        <parameter name="executionEnv" value="local" />
+        <parameter name="browser" value="mobileEnv" />
+        <classes>
+            <class name="testcases.TrivagoBookingTest" />
+        </classes>
+    </test>-->
+
+    <test name="ChromeTest">
+        <parameter name="executionEnv" value="local" />
+        <parameter name="browser" value="chrome" />
+
+        <classes>
+
+            <class name="testcases.GitCreateProjectTest" />
+
+        </classes>
+
+    </test>
+
+    <!--<test name="FirefoxTest">
+        <parameter name="executionEnv" value="local" />
+        <parameter name="browser" value="firefox" />
+
+        <classes>
+
+            <class name="testcases.GitCreateProjectTest" />
 
         </classes>
 
